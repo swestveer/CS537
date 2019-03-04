@@ -1,0 +1,43 @@
+#
+# Sample makefile updated to include the commands to run the Clang Static Analyzer
+#
+#    scan-build will "make" your program and run CSA at the same time.
+#
+#    scan-view will do a scan-build (if necessary) and then open a web browser
+#      window to review the results.
+#
+CC = gcc
+WARNING_FLAGS = -Wall -Wextra
+EXE = 537ps
+SCAN_BUILD_DIR = scan-build-out
+
+all: main.o getinfo.o parse.o printProc.o
+	$(CC) -o $(EXE) main.o getinfo.o parse.o printProc.o
+
+main.o: main.c getinfo.h parse.h printProc.h
+	$(CC) $(WARNING_FLAGS) -c main.c
+
+getinfo.o: getinfo.c parse.h printProc.h
+	$(CC) $(WARNING_FLAGS) -c getinfo.c
+
+parse.o: parse.c getinfo.h printProc.h
+	$(CC) $(WARNING_FLAGS) -c parse.c
+
+printProc.o: printProc.c getinfo.h parse.h
+	$(CC) $(WARNING_FLAGS) -c printProc.c
+
+clean:
+	rm -f $(EXE) *.o
+	rm -rf $(SCAN_BUILD_DIR)
+
+#
+# Run the Clang Static Analyzer
+#
+scan-build: clean
+	scan-build -o $(SCAN_BUILD_DIR) make
+
+#
+# View the one scan available using firefox
+#
+scan-view: scan-build
+	firefox -new-window $(SCAN_BUILD_DIR)/*/index.html 

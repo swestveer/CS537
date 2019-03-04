@@ -1,0 +1,13 @@
+537malloc.c
+- contains malloc537, memcheck537, realloc537, free537
+- mimicks standard c system calls
+
+node.h 
+- contains tree definition
+- each node in tree stores the pointer, size, freed, color
+
+node.c 
+- methods of traverse, insertion, and deletion in a Red-Black tree
+- over - method for finding overlap with a pointer address
+- overlap - method for finding all overlapping nodes with range of memory 
+- includes printing functionality 

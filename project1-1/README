@@ -1,0 +1,18 @@
+The program 537ps breaks into three modules.
+
+parse.c
+- parses command line input using getopt
+- changes the default flags based on input
+- contains two local functions to check 
+  input strings for error
+
+getinfo.c
+- uses readdir to access the /proc and /process subdirectory
+- stores process properties into struct Process
+- uses an array of structures 
+- compares pid and uid with existing processes 
+
+printProc.c
+- prints process info based on flags 
+
+

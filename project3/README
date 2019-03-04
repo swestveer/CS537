@@ -1,0 +1,27 @@
+The executable 537make is a simple version of linux make.
+The program contains four big modules. 
+
+The main file checks for the flag -f 
+
+1. text_parsing
+-process either a specified makefile using -f or Makefile and if that is not found, makefile
+-prints to stderr if a line is not a comment, valid target or a valid command.
+-If variables are present it replaces variables in makefile.
+-Passes a processed array back to main for further processing.
+
+2. build_spec_graph
+- build a tree structure where each node is a file specified in the makefile
+- check for duplicate targets
+- traverse to check for cycles
+
+3. build_spec_repr
+- traverse through the graph 
+- check for modification time 
+- check if files exist
+- return a list of targets that needs to be recompiled
+
+4. proc_creation_prog_exe
+- execute the commands of the list of targets by forking and execvp
+
+5. node.h
+- contains definition of the nodes in the tree

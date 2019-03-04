@@ -1,0 +1,3 @@
+student,full name (as in Canvas),Net ID,CS ID,wisc email (not CS email),campus ID number
+Shawn Westveer, westveer, westveer@wisc.edu, 907 745 9601
+Jing-Yao Chen, jchen478, jchen478@wisc.edu, 907 350 7411
